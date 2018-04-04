@@ -48,5 +48,5 @@ URxvt.scrollBar: false
 URxvt*iso14755: false
 
 URxvt.perl-ext-common: default,clipboard
-URxvt.keysym.Shif-Control-C: perl:clipboard:copy
-URxvt.keysym.Shif-Control-V: perl:clipboard:paste
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
