@@ -1,0 +1,235 @@
+#############
+# constants #
+#############
+
+# alternate arrow keys
+set $up k
+set $down j
+set $left h
+set $right l 
+
+# modifier key
+set $mod Mod1
+floating_modifier $mod
+
+#########
+# modes #
+#########
+
+# resize window (you can also use the mouse for that)
+#mode "resize" {
+#        bindsym j resize shrink width 10 px or 10 ppt
+#        bindsym k resize grow height 10 px or 10 ppt
+#        bindsym l resize shrink height 10 px or 10 ppt
+#        bindsym semicolon resize grow width 10 px or 10 ppt
+#
+#        # same bindings, but for the arrow keys
+#        bindsym Left resize shrink width 10 px or 10 ppt
+#        bindsym Down resize grow height 10 px or 10 ppt
+#        bindsym Up resize shrink height 10 px or 10 ppt
+#        bindsym Right resize grow width 10 px or 10 ppt
+#
+#        # back to normal: Enter or Escape
+#        bindsym Return mode "default"
+#        bindsym Escape mode "default"
+#}
+
+################
+# key bindings #
+################
+
+# start a terminal
+bindsym $mod+Return exec urxvt 
+bindsym $mod+Shift+Return exec "urxvt -name urxvtfloat"
+bindsym $mod+Shift+i exec "urxvt -e htop"
+bindsym $mod+Shift+u exec "urxvt -name urxvtfloat -e bash -c 'neofetch;bash -i'"
+bindsym $mod+t exec "urxvt -name urxvtfloat -e bash -c 'echo Tasks:;task list;bash -i'"
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec dmenu_run
+
+# change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+n split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+w floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# enter resize mode
+#bindsym $mod+r mode "resize"
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exit
+
+# resize window
+bindsym $mod+u resize shrink width 10 px or 10 ppt
+bindsym $mod+i resize grow height 10 px or 10 ppt
+bindsym $mod+o resize shrink height 10 px or 10 ppt
+bindsym $mod+p resize grow width 10 px or 10 ppt
+
+# screen lock shortcut
+#bindsym $mod+shift+x exec i3lock --color "#000000"
+bindsym $mod+shift+x exec ~/.config/i3/lock.sh
+
+# turn on HDMI monitor
+bindsym $mod+M exec xrandr --output HDMI-0 --auto --left-of LVDS-1-1; exec feh --bg-fill ~/.config/i3/wallpaper.jpg; exec --no-startup-id $HOME/.config/polybar/launch.sh
+
+
+# start ranger
+bindsym $mod+r exec urxvt -e ranger
+
+# start qutebrowser
+bindsym $mod+b exec qutebrowser
+
+
+# screenbrightness
+
+##############
+# workspaces #
+##############
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+###########
+# visuals #
+###########
+
+# system font
+font pango:SFNS Display 8
+
+# wallpaper
+exec_always feh --bg-fill ~/.config/i3/wallpaper.jpg
+
+# gaps
+gaps inner 12
+gaps outer 2
+
+# compton
+exec --no-startup-id compton --backend xrender
+
+# remove borders
+for_window [class="^.*"] border pixel 1
+
+# color constants
+set $bg-color 	            #3f3f3f
+set $inactive-bg-color      #2f343f
+set $text-color             #f3f4f5
+
+# window colors
+#                       border              background          text             indicator
+client.focused          $bg-color           $bg-color           $text-color      $bg-color
+client.unfocused        $inactive-bg-color  $inactive-bg-color  $text-color      $inactive-bg-color
+client.focused_inactive $inactive-bg-color  $inactive-bg-color  $text-color      $inactive-bg-color
+client.urgent           $bg-color           $bg-color           $text-color      $bg-color
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+#bar {
+#        status_command i3status
+#            colors {
+#                background         $bg-color
+#                separator          $border-color 
+#
+##                                  BORDER                   BACKGROUND          TEXT
+#                focused_workspace  $border-color            $bg-color           $text-color 
+#                inactive_workspace $inactive-border-color   $inactive-bg-color  $inactive-text-color
+#                urgent_workspace   $urgent-bg-color         $urgent-bg-color    $text-color 
+#}
+#}
+
+###########
+# classes #
+###########
+
+for_window [class="love"] floating enable
+for_window [instance="urxvtfloat"] floating enable
+
+########
+# misc #
+########
+
+# disable beeping
+exec xset b off
+
+# rebing caps lock
+#exec_always setxkbmap -option caps:escape
+
+# keyboard repeat settings
+exec xset r rate 300 60
+
+# keyboard layouts
+exec_always --no-startup-id "setxkbmap -layout us,lt,ru -option 'grp:alt_space_toggle' -option caps:escape"

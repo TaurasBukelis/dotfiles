@@ -1,0 +1,52 @@
+! Font
+*faceName: Noto Mono
+*faceSize: 10
+URxvt.font: xft:Hack:pixelsize=12
+!URxvt.letterSpace: -2
+urxvt*depth: 32
+urxvtfloat*depth: 32
+
+! DOS-box colours...
+*.foreground:   #eceff1
+*.background:   [70]#263238
+*.cursorColor:  #eceff1
+
+! black
+*.color0:       #263238
+*.color8:       #37474f
+
+! red
+*.color1:       #ff7a00
+*.color9:       #ff804d
+
+! green
+*.color2:       #009688
+*.color10:      #26a69a
+
+! yellow
+*.color3:       #ffc407
+*.color11:      #e9b72f
+
+! blue
+*.color4:       #03a9f4
+*.color12:      #81d4fa
+
+! magenta
+*.color5:       #e91e63
+*.color13:      #f55199
+
+! cyan
+*.color6:       #8bc34a
+*.color14:      #9ccc65
+
+! white
+*.color7:       #cfd8dc
+*.color15:      #eceff1
+
+! Remove scrollbar
+URxvt.scrollBar: false
+URxvt*iso14755: false
+
+URxvt.perl-ext-common: default,clipboard
+URxvt.keysym.Shif-Control-C: perl:clipboard:copy
+URxvt.keysym.Shif-Control-V: perl:clipboard:paste
