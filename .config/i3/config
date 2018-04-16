@@ -12,6 +12,10 @@ set $right l
 set $mod Mod1
 floating_modifier $mod
 
+# Misc
+set $float /home/tauras/.config/scripts/floating.sh 
+set $prompt /home/tauras/.config/scripts/prompt.sh
+
 #########
 # modes #
 #########
@@ -40,10 +44,11 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec urxvt 
-bindsym $mod+Shift+Return exec "urxvt -name urxvtfloat"
+#bindsym $mod+Shift+Return exec "urxvt -name urxvtfloat"
+bindsym $mod+Shift+Return exec "$float"
 bindsym $mod+Shift+i exec "urxvt -e htop"
-bindsym $mod+Shift+u exec "urxvt -name urxvtfloat -e bash -c 'neofetch;bash -i'"
-bindsym $mod+t exec "urxvt -name urxvtfloat -e bash -c 'echo Tasks:;task list;bash -i'"
+bindsym $mod+Shift+u exec "$float neofetch"
+bindsym $mod+t exec "$float 'echo Tasks:; task list'"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -109,7 +114,8 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exit
+#bindsym $mod+Shift+e exit
+bindsym $mod+Shift+e exec $prompt "Do you really want to exit?" "i3-msg exit"
 
 # resize window
 bindsym $mod+u resize shrink width 10 px or 10 ppt
@@ -122,14 +128,19 @@ bindsym $mod+p resize grow width 10 px or 10 ppt
 bindsym $mod+shift+x exec ~/.config/i3/lock.sh
 
 # turn on HDMI monitor
-bindsym $mod+M exec xrandr --output HDMI-0 --auto --left-of LVDS-1-1; exec feh --bg-fill ~/.config/i3/wallpaper.jpg; exec --no-startup-id $HOME/.config/polybar/launch.sh
-
+bindsym $mod+Shift+m exec ~/.config/scripts/monitor.sh
 
 # start ranger
 bindsym $mod+r exec urxvt -e ranger
 
 # start qutebrowser
 bindsym $mod+b exec qutebrowser
+
+# start neomutt
+bindsym $mod+m exec urxvt -e neomutt
+
+# under/over-clock
+bindsym $mod+Shift+n exec ~/.config/scripts/underclock.sh # Fix (needs to spawn a shell for password entry)
 
 
 # screenbrightness
