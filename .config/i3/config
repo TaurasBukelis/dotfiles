@@ -49,6 +49,7 @@ bindsym $mod+Shift+Return exec "$float"
 bindsym $mod+Shift+i exec "urxvt -e htop"
 bindsym $mod+Shift+u exec "$float neofetch"
 bindsym $mod+t exec "$float 'echo Tasks:; task list'"
+bindsym $mod+Shift+p exec "$float '~/.config/scripts/underclock.sh'"
 
 # kill focused window
 bindsym $mod+Shift+q kill
