@@ -20,7 +20,7 @@ secondary = #e60053
 alert = #bd2c40
 
 [bar/example]
-monitor = ${env:MONITOR:}
+monitor = ${env:MONITOR:LVDS1}
 width = 100%
 height = 16
 offset-x = 0
@@ -42,11 +42,13 @@ padding-left = 0
 padding-right = 2
 
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1
 
-font-0 = fixed:pixelsize=8;1
+;font-0 = fixed:pixelsize=8;1
+font-0 = hack:pixelsize=8;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = "Wuncon Siji:pixelsize=8;1"
+;font-2 = "Wuncon Siji:pixelsize=8;1"
+font-2 = "Siji:pixelsize=8;1"
 
 modules-left = bspwm i3
 modules-center = mpd
@@ -108,18 +110,18 @@ type = internal/bspwm
 label-focused = %index%
 label-focused-background = ${colors.background-alt}
 label-focused-underline= ${colors.primary}
-label-focused-padding = 2
+label-focused-padding = 1
 
 label-occupied = %index%
-label-occupied-padding = 2
+label-occupied-padding = 1
 
 label-urgent = %index%!
 label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
+label-urgent-padding = 1
 
 label-empty = %index%
 label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
+label-empty-padding = 1
 
 [module/i3]
 type = internal/i3
