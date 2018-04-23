@@ -140,10 +140,6 @@ bindsym $mod+b exec qutebrowser
 # start neomutt
 bindsym $mod+m exec urxvt -e neomutt
 
-# under/over-clock
-bindsym $mod+Shift+n exec $float ~/.config/scripts/underclock.sh # Fix (needs to spawn a shell for password entry)
-
-
 # screenbrightness
 
 ##############
