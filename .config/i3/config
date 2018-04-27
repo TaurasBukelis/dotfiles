@@ -140,6 +140,10 @@ bindsym $mod+b exec qutebrowser
 # start neomutt
 bindsym $mod+m exec urxvt -e neomutt
 
+# Wacom display script
+
+bindsym $mod+Shift+w exec ~/.config/scripts/wacom.sh
+
 # screenbrightness
 
 ##############
@@ -186,7 +190,6 @@ gaps outer 2
 
 # compton
 exec --no-startup-id compton --backend xrender
-
 # remove borders
 for_window [class="^.*"] border pixel 1
 
