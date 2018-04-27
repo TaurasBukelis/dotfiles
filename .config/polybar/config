@@ -50,8 +50,9 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 ;font-2 = "Wuncon Siji:pixelsize=8;1"
 font-2 = "Siji:pixelsize=8;1"
 
-modules-left = bspwm i3
-modules-center = mpd
+;modules-left = bspwm i3
+modules-left = i3
+;modules-center = mpd
 ;modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
 modules-right = xkeyboard wlan eth battery temperature date
 
