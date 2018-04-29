@@ -21,3 +21,6 @@ then
 fi
 
 xsetwacom --set "Wacom Intuos PT S 2 Pen stylus" MapToOutput $answer
+xsetwacom --set "Wacom Intuos PT S 2 Pad pad" Button 1 "Key KP_Add"
+xsetwacom --set "Wacom Intuos PT S 2 Pad pad" Button 3 "Key KP_Subtract"
+xsetwacom --set "Wacom Intuos PT S 2 Pad pad" Button 8 "Key +ctrl z -ctrl"
