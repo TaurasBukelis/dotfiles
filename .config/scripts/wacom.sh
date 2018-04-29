@@ -1,5 +1,8 @@
 #!/bin/bash
 
+stylus="Wacom Intuos PT S 2 Pen stylus"
+pad="Wacom Intuos PT S 2 Pad pad"
+
 ans=""
 output=$(xdpyinfo -ext XINERAMA | grep "head" | cut -d" " -f4 | cut -b 2)
 
@@ -20,7 +23,13 @@ then
     exit 0
 fi
 
-xsetwacom --set "Wacom Intuos PT S 2 Pen stylus" MapToOutput $answer
-xsetwacom --set "Wacom Intuos PT S 2 Pad pad" Button 1 "Key KP_Add"
-xsetwacom --set "Wacom Intuos PT S 2 Pad pad" Button 3 "Key KP_Subtract"
-xsetwacom --set "Wacom Intuos PT S 2 Pad pad" Button 8 "Key +ctrl z -ctrl"
+# Maps to screen
+xsetwacom --set "$stylus" MapToOutput $answer
+
+# Buttons
+xsetwacom --set "$pad" Button 1 "Key KP_Add"
+xsetwacom --set "$pad" Button 3 "Key KP_Subtract"
+xsetwacom --set "$pad" Button 8 "Key +ctrl z -ctrl"
+
+# Fixed aspect ratio
+xsetwacom --set "$stylus" Area 0 0 15200 8550
