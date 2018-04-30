@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# i3lock-color location
+i3lock=~/.bin/i3lock-color/x86_64-unknown-linux-gnu/
+
 # Screenshot location
 location=/tmp/wall.jpg
 
@@ -22,17 +25,29 @@ sources=$(xrandr --query | grep ' connected' | grep -o '[0-9][0-9]*x[0-9][0-9]*[
 
 # Calculating rectangle positions
 for res in $sources; do
-    data=(${res//[x+]/ })
-    centerx=$((${data[2]} + ${data[0]}/2))
-    centery=$((${data[3]} + ${data[1]} - yoffset))
+
+    data=(${res//[x+]/ })   # String splitting
+
+    # ${data[0]} - Screen width
+    # ${data[1]} - Screen height
+    # ${data[2]} - Screen X offset
+    # ${data[3]} - Screen Y offset
+
+    centerx=$((${data[2]} + ${data[0]}/2))          # Center x coordinates of the box
+    centery=$((${data[3]} + ${data[1]} - yoffset))  # Center y coordinate of the box
+
     rectangles+="rectangle $((centerx - boxw/2)),$((centery-boxh/2)) $((centerx + boxw/2)),$((centery + boxh/2)) "
 done
 
 # Applying blur and drawing the rectangles
-scrot $location && convert $location -blur 16x8 -fill "rgba( 0, 0, 0, 0.4)" -draw "$rectangles" $location
+scrot $location && convert $location \
+    -blur 16x8 \
+    -fill "rgba( 0, 0, 0, 0.4)" \
+    -draw "$rectangles" \
+    $location
 
 # Locking the screen
-~/.bin/i3lock-color/x86_64-unknown-linux-gnu/i3lock \
+$i3lock/i3lock \
     -e \
     -i $location \
     --clock \
@@ -42,9 +57,10 @@ scrot $location && convert $location -blur 16x8 -fill "rgba( 0, 0, 0, 0.4)" -dra
     --verifpos="tx:ty+10" \
     --wrongpos="tx:ty+10" \
     --modifpos="tx:ty+20" \
+    --statuspos="tx:ty+10" \
     --veriftext="Verifying" \
     --wrongtext="Incorrect" \
-    --noinputtext="" \
+    --noinputtext="No Input" \
     --insidevercolor=$V \
     --insidewrongcolor=$R \
     --insidecolor=$B \
@@ -63,8 +79,6 @@ scrot $location && convert $location -blur 16x8 -fill "rgba( 0, 0, 0, 0.4)" -dra
     --ring-width=3 \
     --indicator \
     --modsize=10 \
-    #--textcolor=$W \
-    #--datestr "Type password to unlock..." \
 
 # If still locked after 5 seconds, turn off screen
 sleep 5 && pgrep i3lock && xset dpms force off
