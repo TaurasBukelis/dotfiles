@@ -67,4 +67,4 @@ scrot $location && convert $location -blur 16x8 -fill "rgba( 0, 0, 0, 0.4)" -dra
     #--datestr "Type password to unlock..." \
 
 # If still locked after 5 seconds, turn off screen
-#sleep 5 && pgrep i3lock && xset dpms force off
+sleep 5 && pgrep i3lock && xset dpms force off
