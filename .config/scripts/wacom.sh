@@ -1,30 +1,44 @@
 #!/bin/bash
 
+aspect=(15200 9500)
 stylus="Wacom Intuos PT S 2 Pen stylus"
 pad="Wacom Intuos PT S 2 Pad pad"
 
 ans=""
-output=$(xdpyinfo -ext XINERAMA | grep "head" | cut -d" " -f4 | cut -b 2)
+output=$(xrandr -q | grep ' connected' | grep "[0-9][0-9]*x[0-9][0-9]*[^ ]*")
 
-for line in $output; do
-    if [ $line -eq 0 ]
-    then
-        ans="HEAD-$line"
-    else
-        ans="$ans\nHEAD-$line"
-    fi
-    #ans="$ans '\n' $line"
-done
+count=0
+formated=""
 
-answer=$(echo -e "$ans" | dmenu -i -p "Choose display:")
+while read -r line; do
+    names[count]=$(echo $line -n | cut -d" " -f1)
+    info[count]=$(echo $line -n | grep -o "[0-9][0-9]*x[0-9][0-9]*[^ ]*")
+    formated="${formated}${names[count]}\n"
+    count=$((count + 1))
+done <<< $output
+
+answer=$(echo -e $formated | dmenu -i -p "Choose display:")
 
 if [ -z $answer ]
 then
     exit 0
 fi
 
+found=false
+id=0
+
+for ((i=0;i<$count;i++))
+do
+    if [ $answer == ${names[$i]} ]
+    then
+        found=true
+        id=$i
+        break
+    fi
+done
+
 # Maps to screen
-xsetwacom --set "$stylus" MapToOutput $answer
+xsetwacom --set "$stylus" MapToOutput ${info[$id]}
 
 # Buttons
 xsetwacom --set "$pad" Button 1 "Key KP_Add"
@@ -32,4 +46,17 @@ xsetwacom --set "$pad" Button 3 "Key KP_Subtract"
 xsetwacom --set "$pad" Button 8 "Key +ctrl z -ctrl"
 
 # Fixed aspect ratio
-xsetwacom --set "$stylus" Area 0 0 15200 8550
+res=(${info[$id]//[x+]/ })
+
+if [ $((res[0]*10)) -gt $((res[1]*16)) ]
+then
+    # Change the last one
+    num=$(echo "${aspect[0]}*${res[1]}/${res[0]}" | bc)
+    xsetwacom --set "$stylus" Area 0 0 ${aspect[0]} $num
+else
+    # Change the first one
+    num=$(echo "${aspect[1]}*${res[0]}/${res[1]}" | bc)
+    xsetwacom --set "$stylus" Area 0 0 $num ${aspect[1]}
+fi
+
+echo ${aspect[0]}
