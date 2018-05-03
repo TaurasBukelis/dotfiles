@@ -48,6 +48,20 @@ command Pdf w | !pandoc % -s -o %<.pdf
 command Pyt w | !clear; python %
 command ClearWin %s///g
 
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'nightsense/strawberry'
+Plug 'hickop/vim-terminal-colors'
+call plug#end()
+
 set viminfo=
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
