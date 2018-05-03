@@ -4,12 +4,12 @@
 URxvt.font: xft:Hack:pixelsize=12
 !URxvt.font: xft:gohufont:pixelsize=12
 !URxvt.letterSpace: -2
-urxvt*depth: 32
-urxvtfloat*depth: 32
+URxvt*depth: 32
 
 ! DOS-box colours...
 *.foreground:   #eceff1
-*.background:   [70]#263238
+*.background:   #263238
+URxvt.background:   [70]#263238
 *.cursorColor:  #eceff1
 
 ! black
