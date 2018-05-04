@@ -39,8 +39,8 @@ bottom = true
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 2
-;line-size = 0
+;line-size = 2
+line-size = 0
 line-color = #f00
 
 border-size = 0
@@ -54,6 +54,7 @@ module-margin-right = 1
 
 ;font-0 = fixed:pixelsize=8;1
 font-0 = hack:pixelsize=8;1
+;font-0 = "SFNS Display:style=UltraLight:pixelsize=10;1"
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 ;font-2 = "Wuncon Siji:pixelsize=8;1"
 font-2 = "Siji:pixelsize=8;1"
