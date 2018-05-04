@@ -61,6 +61,7 @@ $i3lock/i3lock \
     --veriftext="Verifying" \
     --wrongtext="Incorrect" \
     --noinputtext="No Input" \
+    --datestr="%A, %m %d" \
     --insidevercolor=$V \
     --insidewrongcolor=$R \
     --insidecolor=$B \
