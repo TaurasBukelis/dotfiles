@@ -238,15 +238,10 @@ exec xset b off
 #exec_always setxkbmap -option caps:escape
 
 # keyboard repeat settings
-exec xset r rate 300 20
+exec xset r rate 300 60
 
 # keyboard layouts
 exec_always --no-startup-id "setxkbmap -layout us,lt,ru -option 'grp:alt_space_toggle' -option caps:escape"
-
-# Wacom key bindings
-exec xsetwacom --set "Wacom Intuos PT S 2 Pad pad" Button 1 "Key KP_Add"
-exec xsetwacom --set "Wacom Intuos PT S 2 Pad pad" Button 3 "Key KP_Subtract"
-exec xsetwacom --set "Wacom Intuos PT S 2 Pad pad" Button 8 "Key +ctrl z -ctrl"
 
 # NumLock
 exec numlockx on
