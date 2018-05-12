@@ -2,6 +2,7 @@
 *faceName: Noto Mono
 *faceSize: 10
 URxvt.font: xft:Hack:pixelsize=12
+!URxvt.font: xft:TamzenForPowerline:pixelsize=12
 !URxvt.font: xft:gohufont:pixelsize=12
 !URxvt.letterSpace: -2
 URxvt*depth: 32
