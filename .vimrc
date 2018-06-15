@@ -43,7 +43,7 @@
 " Custom
 
 command Cpp w | !clear; g++ % -o %<; ./%< 
-command Lov !love ./.
+command Lov w | !love ./.
 command Pdf w | !pandoc % -s -o %<.pdf
 command Pyt w | !clear; python %
 command ClearWin %s///g
