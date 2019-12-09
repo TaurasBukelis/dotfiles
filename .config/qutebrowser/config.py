@@ -42,5 +42,9 @@ c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?hl=en&q={}'}
 # Type: List of FuzzyUrl, or FuzzyUrl
 c.url.start_pages = 'https://www.google.lt'
 
+# Better movement
 config.bind('J', 'tab-prev')
 config.bind('K', 'tab-next')
+
+# Hide UI
+config.bind('xx', 'config-cycle statusbar.hide ;; config-cycle tabs.show never always')

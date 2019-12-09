@@ -1,0 +1,5 @@
+.config/bspwm/wallpaper.*
+.config/qutebrowser/bookmarks/
+.config/qutebrowser/qsettings/
+.config/qutebrowser/quickmarks
+.config/scripts/hotspot.sh

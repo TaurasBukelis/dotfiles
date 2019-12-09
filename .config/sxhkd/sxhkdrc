@@ -1,0 +1,126 @@
+# bspc query -N -n focused.floating | wc -l 
+# to check if the current window is floating
+# wc -l can be used to check if bspc command succeded
+# this can be used to replace if [ $? -eq 0 ]
+
+# Terminal emulator
+alt + Return
+	urxvt
+
+# Floating terminal emulator
+alt + shift + Return
+	$HOME/.config/scripts/floating.sh
+
+# Program launcher
+alt + d
+	dmenu_run
+
+# Toggle monitors
+alt + shift + m
+	~/.config/scripts/monitor.sh
+	#~/.config/bspwm/populate-monitors.sh
+
+# Reload bspwm config
+alt + shift + r
+	$HOME/.config/bspwm/bspwmrc &
+
+# Quit bspwm normally (add prompt)
+alt + shift + e
+	$HOME/.config/scripts/prompt.sh "Do you really want to exit?" "bspc quit"
+	#bspc quit
+
+# Close node (window)
+alt + shift + q
+	bspc node -c
+
+# Set windown to fullscreen
+alt + f
+	bspc node -t ~fullscreen
+
+# focus the node in the given direction
+alt + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# Focus or create a desktop
+alt + {1-9,0}
+	~/.config/bspwm/desktop-switch.sh {1-9,10}
+
+# Send note to a desktop
+alt + shift + {1-9,0}
+	bspc node -d {1-9,10}
+# TODO: if the desktop doesn't exist, add it
+
+# Resize window
+alt + y
+	bspc node -z left -10 0; bspc node -z right -10 0
+alt + o
+	bspc node -z left 10 0; bspc node -z right 10 0
+alt + i
+	bspc node -z top 0 -10; bspc node -z bottom 0 -10
+alt + u
+	bspc node -z top 0 10; bspc node -z bottom 0 10
+
+# Toggle Floating
+alt + w
+	bspc node -t ~floating
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# Switch window focus
+alt + Tab
+	bspc node -f next.local
+
+# Lock screen
+alt + shift + x
+	$HOME/.config/scripts/lock.sh
+
+# Start ranger
+alt + r
+	urxvt -e ranger
+
+# Start qutebrowser
+alt + b
+	qutebrowser
+
+# Wacom display script
+alt + shift + w
+	$HOME/.config/scripts/wacom.sh
+
+# Neofetch
+alt + shift + u
+	$HOME/.config/scripts/floating.sh 1 neofetch
+
+#### Might be useless
+# preselect the direction
+#alt + ctrl + {h,j,k,l}
+	#bspc node -p {west,south,north,east}
+
+## preselect the ratio
+#alt + ctrl + {1-9}
+#	bspc node -o 0.{1-9}
+#
+## cancel the preselection for the focused node
+#alt + ctrl + Escape
+#	bspc node -p cancel
+#
+## cancel the preselection for the focused desktop
+#super + ctrl + shift + space
+#	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+# Swap the current node and the biggest node
+super + g
+	bspc node -s biggest.local
+
+# focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# rotate current desktop
+alt + t
+	bspc node @/ -R 90

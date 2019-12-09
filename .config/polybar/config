@@ -9,10 +9,11 @@
 
 [colors]
 ; [In use]
-background = #66000000
-background-alt = #66444444
+;background = #b3141A20
+background = #77141A20
+background-alt = #b3D3154A
 foreground = #dfdfdf
-foreground-alt = #999
+foreground-alt = #D3154A
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
@@ -33,7 +34,7 @@ height = 18
 offset-x = 0
 offset-y = 0
 ;radius = 6.0
-fixed-center = false
+fixed-center = true
 bottom = true
 
 background = ${colors.background}
@@ -61,23 +62,26 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = "Siji:pixelsize=8;1"
 
 ;modules-left = bspwm i3
-modules-left = i3
+;modules-left = i3
+modules-left = bspwm
+;modules-center = xwindow
 ;modules-center = mpd
-;modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
-modules-right = xkeyboard wlan eth battery temperature date
+;modules-center = volume
+;modules-right = filesystem xbacklight xkeyboard memory cpu wlan eth battery temperature date powermenu
+modules-right = cpuSpeed xbacklight volume xkeyboard wlan eth battery temperature date 
 
 tray-position = right
 tray-padding = 2
 ;tray-transparent = true
 ;tray-background = #0063ff
 
-;wm-restack = bspwm
+wm-restack = bspwm
 ;wm-restack = i3
 
-;override-redirect = true
+;override-redirect = false
 
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
 
 ;scroll-up = i3wm-wsnext
 ;scroll-down = i3wm-wsprev
@@ -87,7 +91,7 @@ cursor-scroll = ns-resize
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:30:...%
+label = %title:0:100:...%
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -118,19 +122,23 @@ label-unmounted-foreground = ${colors.foreground-alt}
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = %index%
+; Only show workspaces on the same output as the bar
+pin-workspaces = true
+
+label-focused = %name%
 label-focused-background = ${colors.background-alt}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 1
 
-label-occupied = %index%
+label-occupied = %name%
 label-occupied-padding = 1
 
-label-urgent = %index%!
+label-urgent = %name%!
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 1
 
-label-empty = %index%
+;label-empty = %name%
+label-empty = 
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 1
 
@@ -277,12 +285,14 @@ label = %date% %time%
 type = internal/volume
 
 format-volume = <label-volume> <bar-volume>
-label-volume = VOL
+label-volume = Volume
 label-volume-foreground = ${root.foreground}
 
 format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
-label-muted = sound muted
+format-muted-prefix-foreground = ${colors.foreground-alt}
+;format-muted-foreground = ${colors.foreground-alt}
+format-muted-foreground = ${colors.foreground}
+label-muted = Muted
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
@@ -384,7 +394,13 @@ screenchange-reload = true
 ;compositing-border = over
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+margin-top = 0
+margin-bottom = 0
+
+[module/cpuSpeed]
+type = custom/script
+
+exec = ~/.config/scripts/cpuClock.sh
+interval = 2
 
 ; vim:ft=dosini

@@ -1,18 +1,17 @@
 ! Font
 *faceName: Noto Mono
 *faceSize: 10
-URxvt.font: xft:Hack:pixelsize=12
-!URxvt.font: xft:TamzenForPowerline:pixelsize=12
+URxvt.font: xft:Hack:pixelsize=11
+!URxvt.font: xft:Source Sans Pro:style=Regular:pixelsize=12
+!URxvt.font: xft:Menlo:pixelsize=12
 !URxvt.font: xft:gohufont:pixelsize=12
-!URxvt.font: xft:SFMono:pixelsize=18
 !URxvt.letterSpace: -2
 URxvt*depth: 32
 
 ! DOS-box colours...
 *.foreground:   #eceff1
-*.background:   #263238
-URxvt.background:   [70]#263238
-!URxvt.background:   [70]#333333
+*.background:   #141A20
+URxvt.background:   [80]#141A20
 *.cursorColor:  #eceff1
 
 ! black

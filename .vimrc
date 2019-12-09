@@ -43,10 +43,16 @@
 " Custom
 
 command Cpp w | !clear; g++ % -o %<; ./%< 
+command Gcc w | !clear; gcc % -o %<; ./%< 
 command Lov w | !love ./.
 command Pdf w | !pandoc % -s -o %<.pdf
 command Pyt w | !clear; python %
+command Tex w | !clear; pdflatex %
+command Mat w | w !octave
 command ClearWin %s///g
+
+set listchars=tab:▸·
+set display+=lastline
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -60,6 +66,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'nightsense/strawberry'
 Plug 'hickop/vim-terminal-colors'
+Plug 'tikhomirov/vim-glsl'
 call plug#end()
 
 set viminfo=
@@ -163,6 +170,7 @@ endif
 
 " Add a bit extra margin to the left
 " set foldcolumn=1
+" Enable relative numbers
 set number relativenumber
 
 
@@ -207,7 +215,7 @@ set noswapfile
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
-set expandtab
+set noexpandtab "EDITED
 
 " Be smart when using tabs ;)
 set smarttab
@@ -420,3 +428,8 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+" More custom commands
+" Disable text wrapping (adding newlines)
+set textwidth=0
+" Not clearing clipboard when closing
+autocmd VimLeave * call system("xsel -ib", getreg('+'))

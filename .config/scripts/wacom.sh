@@ -1,8 +1,8 @@
 #!/bin/bash
 
-aspect=(15200 9500)
-stylus="Wacom Intuos PT S 2 Pen stylus"
-pad="Wacom Intuos PT S 2 Pad pad"
+aspect=(21600 13500)
+stylus="Wacom Intuos PT M 2 Pen stylus"
+pad="Wacom Intuos PT M 2 Pad pad"
 
 ans=""
 output=$(xrandr -q | grep ' connected' | grep "[0-9][0-9]*x[0-9][0-9]*[^ ]*")

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # i3lock-color location
-i3lock=~/.bin/i3lock-color/x86_64-unknown-linux-gnu/
+#i3lock=~/.bin/i3lock-color/x86_64-unknown-linux-gnu/
 
 # Screenshot location
 location=/tmp/wall.jpg
@@ -40,14 +40,14 @@ for res in $sources; do
 done
 
 # Applying blur and drawing the rectangles
-scrot $location && convert $location \
+scrot -o $location && convert $location \
     -blur 16x8 \
     -fill "rgba( 0, 0, 0, 0.4)" \
     -draw "$rectangles" \
     $location
 
 # Locking the screen
-$i3lock/i3lock \
+i3lock \
     -e \
     -i $location \
     --clock \
